@@ -90,9 +90,9 @@ app.use((req, res, next) => {
 //     res.send(registerUser);
 // });
 
-// app.get("/", (req, res) => {
-//     res.send("Hi,I am root");
-// });
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter); //parent route
@@ -111,8 +111,8 @@ app.use((err, req, res, next) => {
     res.status(status).render("error.ejs", { message });
 });
 
-
-app.listen("8080", (req, res) => {
+const port = process.env.PORT || 8080;
+app.listen(port, (req, res) => {
     console.log("server is listening to port 8080");
 });
 
